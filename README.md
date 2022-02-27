@@ -1,3 +1,6 @@
+[![Build Status](https://dev.azure.com/johnwatson484/John%20D%20Watson/_apis/build/status/File%20Transfer?branchName=main)](https://dev.azure.com/johnwatson484/John%20D%20Watson/_build/latest?definitionId=58&branchName=main)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=johnwatson484_file-transfer&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=johnwatson484_file-transfer)
+
 # File Transfer
 Azure Function to transfer files between storage containers
 
