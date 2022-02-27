@@ -1,5 +1,5 @@
 const { BlobServiceClient } = require('@azure/storage-blob')
-const sourceContainerName = 'payments'
+const sourceContainerName = 'batch'
 const targetContainerName = 'target'
 let blobServiceClient
 let sourceContainer
@@ -16,12 +16,14 @@ const getBlob = async (container, filename) => {
 }
 
 const transferFile = async (sourceFile) => {
+  console.log(`Transferring ${sourceFile}`)
   const sourceBlob = await getBlob(sourceContainer, sourceFile)
   const destinationBlob = await getBlob(targetContainer, sanitizeFilename(sourceFile))
   const copyResult = await (await destinationBlob.beginCopyFromURL(sourceBlob.url)).pollUntilDone()
 
   if (copyResult.copyStatus === 'success') {
     await sourceBlob.delete()
+    console.log(`Successfully transferred ${sourceFile}`)
   }
 }
 

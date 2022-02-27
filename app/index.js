@@ -8,12 +8,12 @@ module.exports = async function (context, req) {
     context.res = {
       body: 'Source file not provided, no action taken'
     }
-  }
+  } else {
+    storage.connect(process.env.BATCH_STORAGE)
+    await storage.transferFile(decodeURI(sourceFile))
 
-  storage.connect(process.env.BATCH_STORAGE)
-  storage.transferFile(sourceFile)
-
-  context.res = {
-    body: `Successfully transferred ${sourceFile}`
+    context.res = {
+      body: `Successfully transferred ${sourceFile}`
+    }
   }
 }
